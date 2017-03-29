@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#PBS -V
+#PBS -l nodes=4:ppn=24
+#PBS -l walltime=24:00:00
+#PBS -q normal
+
+#PBS -M yang221@illinois.edu
+#PBS -m be
+
+module load R
+module load openmpi-1.8.4-gcc-4.9.2
+module load Rmpi
+module load snow
+
+cd ~/Dynamic_Sampling_R_code_multi
+
+
+echo "Dynamic Sampling R on 4 nodes parallel processes starts at "`date`
+mpirun -np 1 Rscript DS_multi.R
+echo "Dynamic Sampling R on 4 nodes parallel processes ends at "`date`
+
+exit
