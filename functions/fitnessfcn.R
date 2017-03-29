@@ -41,7 +41,7 @@ fitnessfcn <- function(d, grid_mat, D1, c1, c2, sigma1sq, sigma2sq, Bnow, W, lam
   D = rbind(D1, D2)
   D_locs = matrix_locs(D)
   
-  A = Bnow - Bnow[,D_locs] %*% ginv(Bnow[D_locs, D_locs] + Sigma_e) %*% Bnow[D_locs,]
+  A = Bnow - Bnow[,D_locs] %*% solve(Bnow[D_locs, D_locs] + Sigma_e) %*% Bnow[D_locs,]
   
   precision = sum(diag(A %*% W))
   
